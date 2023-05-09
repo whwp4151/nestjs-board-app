@@ -1,8 +1,13 @@
 import { Module } from '@nestjs/common';
 import { BoardsController } from './boards.controller';
 import { BoardsService } from './boards.service';
+import { TypeOrmExModule } from 'src/db/typeorm-ex.module';
+import { BoardRepository } from './board.repository';
 
 @Module({
+  imports: [
+    TypeOrmExModule.forCustomRepository([BoardRepository])
+  ],
   controllers: [BoardsController],
   providers: [BoardsService]
 })
